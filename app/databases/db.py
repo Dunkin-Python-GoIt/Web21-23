@@ -11,10 +11,10 @@ fake_dbs = {
     ],
     "users": [
         {"username":"admin",
-         "hashed_password": "weqrwwetueruyr",
+         "hashed_password": "$2b$12$jJi2emcE1WpfTB7WtC2AROE5kxfZ33Ul4AjgsTw/QK/egX/2qyXP2",
          "role": "admin"},
         {"username":"user",
-         "hashed_password": "popgodglg;gl;g",
+         "hashed_password": "$2b$12$zm011VDvKRfMugnsEbDx7O8xY7HqtKrdRw1TClKVCqhKyIrLU9gWC",
          "role": "user"},
     ]
 }

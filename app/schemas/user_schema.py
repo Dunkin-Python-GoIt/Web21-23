@@ -1,8 +1,11 @@
 from pydantic import BaseModel, Field
 
 
-class User(BaseModel):
+class BaseUser(BaseModel):
     username: str
+
+
+class User(BaseUser):
     hashed_password: str
     role: str
 
