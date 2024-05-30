@@ -7,6 +7,7 @@ from starlette.responses import JSONResponse
 from ..databases.db import get_db
 from ..repository import auth_repo
 from ..schemas import user_schema
+from ..settings import settings
 
 
 router = APIRouter(prefix="/users")
@@ -20,10 +21,11 @@ receivers = [
             "kadulin@gmail.com"
             ]
 
+
 conf = ConnectionConfig(
-    MAIL_USERNAME ="<your mail>",
-    MAIL_PASSWORD = "<your password>",
-    MAIL_FROM = "<your mail>",
+    MAIL_USERNAME ="v.dunkin@goit.ua",
+    MAIL_PASSWORD = settings.mail_password,
+    MAIL_FROM = "v.dunkin@goit.ua",
     MAIL_PORT = 465,
     MAIL_SERVER = "smtp.gmail.com",
     MAIL_STARTTLS = False,
@@ -58,7 +60,7 @@ async def forget_password(
     
     
     if user:
-        forget_password_link = f"http://127.0.0.1:8000/api/users/reset_password/{new_token}"
+        forget_password_link = f"{settings.url}/api/users/reset_password/{new_token}"
     
     mail_body = {
         "service_name": "My site",
@@ -79,6 +81,6 @@ async def forget_password(
     return forget_password_link
 
 
-@router.post("/reset_password/{token:str}")
+@router.get("/reset_password/{token:str}")
 async def reset_password():
-    ...
+    return {"answer": "your password reset successful"}

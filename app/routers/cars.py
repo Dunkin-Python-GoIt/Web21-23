@@ -12,7 +12,6 @@ router = APIRouter(prefix="/cars")
 
 @router.get("/", response_model=list[car_schema.Car])
 async def get_cars(
-    _:Annotated[bool, Depends(auth_repo.RoleChecker(["user", "admin"]))],
     db = Depends(get_db)):
     cars = await car_repo.get_all_cars(db)
     return cars
