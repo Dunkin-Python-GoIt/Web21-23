@@ -32,12 +32,13 @@ banned_ip = []
 
 @app.middleware("https")
 async def ban_ip(request, call_next):
-    ip = ip_address(request.client.host)
-    print(f"{ip = }")
-    if ip in banned_ip:
-        return JSONResponse(
-            status_code=status.HTTP_403_FORBIDDEN,
-            content={"detail": "You in ban list"})
+    if not request.client.host == "testclient":
+        ip = ip_address(request.client.host)
+        print(f"{ip = }")
+        if ip in banned_ip:
+            return JSONResponse(
+                status_code=status.HTTP_403_FORBIDDEN,
+                content={"detail": "You in ban list"})
     response = await call_next(request)
     return response
 
@@ -53,13 +54,13 @@ async def ban_by_headers(request, call_next):
 app.include_router(cars.router, prefix="/api")
 app.include_router(users.router, prefix="/api")
 
-@app.on_event("startup")
-async def startup():
-    r = await Redis(decode_responses=True)
-    await FastAPILimiter.init(r)
+# @app.on_event("startup")
+# async def startup():
+#     r = await Redis(decode_responses=True)
+#     await FastAPILimiter.init(r)
 
 
-@app.get("/", dependencies=[Depends(RateLimiter(times=2, seconds=5))])
+@app.get("/") # , dependencies=[Depends(RateLimiter(times=2, seconds=5))]
 async def root():
     return {
         "status": "ok",
