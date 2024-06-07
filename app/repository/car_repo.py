@@ -1,6 +1,6 @@
 from random import randint
 
-from ..schemas import car_schema
+from schemas import car_schema
 
 async def get_all_cars(db: dict):
     cars = db["cars"]

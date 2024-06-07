@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
-from ..databases.db import get_db
-from ..repository import auth_repo
-from ..schemas import user_schema
+from databases.db import get_db
+from repository import auth_repo
+from schemas import user_schema
 
 
 router = APIRouter(prefix="/users")

@@ -2,9 +2,9 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends
 
-from ..schemas import car_schema
-from ..repository import car_repo, auth_repo
-from ..databases.db import get_db
+from schemas import car_schema
+from repository import car_repo, auth_repo
+from databases.db import get_db
 
 
 router = APIRouter(prefix="/cars")

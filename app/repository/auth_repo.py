@@ -6,8 +6,8 @@ import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from ..schemas import user_schema
-from ..databases.db import get_db
+from schemas import user_schema
+from databases.db import get_db
 
 
 SECRET_KEY = "secret_key"
