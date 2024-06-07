@@ -32,6 +32,15 @@ banned_ip = []
 
 @app.middleware("https")
 async def ban_ip(request, call_next):
+    """_summary_
+
+    Args:
+        request (Request): _description_
+        call_next (callable): next function
+
+    Returns:
+        JSONResponse: response
+    """
     if not request.client.host == "testclient":
         ip = ip_address(request.client.host)
         print(f"{ip = }")
