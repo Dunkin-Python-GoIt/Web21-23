@@ -11,5 +11,6 @@ app.include_router(users.router, prefix="/api")
 @app.get("/")
 async def root():
     return {
-        "status": "ok"
+        "status": "ok",
+        "message": "Txh to all"
     }
